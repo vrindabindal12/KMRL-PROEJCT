@@ -365,7 +365,7 @@ export function ChatBox({ docId, variant = 'standalone' }: ChatBoxProps) {
 							<Input
 								placeholder={
 									isListening
-										? '🎤 Listening… speak now!'
+										? 'Listening… speak now!'
 										: 'Type your question…'
 								}
 								value={input}
@@ -580,7 +580,7 @@ export function ChatBox({ docId, variant = 'standalone' }: ChatBoxProps) {
 					<div className='flex-1 relative'>
 						<Input
 							placeholder={
-								isListening ? '🎤 Listening… speak now!' : 'Type your question…'
+								isListening ? 'Listening… speak now!' : 'Type your question…'
 							}
 							value={input}
 							onChange={event => !isListening && setInput(event.target.value)}

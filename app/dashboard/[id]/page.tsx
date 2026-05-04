@@ -13,7 +13,11 @@ import {
 	ChevronLeft,
 	AlertCircle,
 	CheckCircle,
-	XCircle
+	XCircle,
+	Languages,
+	Copy,
+	LayoutDashboard,
+	Plus
 } from 'lucide-react';
 import { ChatBox } from '@/components/dashboard/ChatBox';
 import { FeedbackForm } from '@/components/dashboard/FeedbackForm';
@@ -390,7 +394,8 @@ export default function DocumentDetailPage() {
 						</div>
 						<div className='flex items-center gap-3'>
 							<Link href='/dashboard' className='inline-flex items-center'>
-								<Button variant='outline' size='sm'>
+								<Button variant='outline' size='sm' className='flex items-center gap-1.5'>
+									<LayoutDashboard className='h-4 w-4' />
 									Dashboard Overview
 								</Button>
 							</Link>
@@ -412,9 +417,10 @@ export default function DocumentDetailPage() {
 								<Button
 									size='sm'
 									variant='outline'
-									className='h-9 px-4'
+									className='h-9 px-4 flex items-center gap-1.5'
 									disabled={!translationLanguage || translationLoading}
 									onClick={translateCurrentNode}>
+									<Languages className='h-4 w-4' />
 									{translationLoading ? 'Translating…' : 'Translate'}
 								</Button>
 							</div>
@@ -517,7 +523,8 @@ export default function DocumentDetailPage() {
 										variant='outline'
 										size='sm'
 										onClick={copySummary}
-										className='ml-2'>
+										className='ml-2 flex items-center gap-1.5'>
+										<Copy className='h-3.5 w-3.5' />
 										Copy Summary
 									</Button>
 								</div>
@@ -776,6 +783,7 @@ export default function DocumentDetailPage() {
 									</Button>
 									<Button
 										size='sm'
+										className='flex items-center gap-1'
 										disabled={
 											loadingNodes ||
 											(page + 1) * pageSize >=
@@ -788,6 +796,7 @@ export default function DocumentDetailPage() {
 											setPage(next);
 											await loadNodesPage(next, pageSize);
 										}}>
+										<Plus className='h-4 w-4' />
 										Load More
 									</Button>
 								</div>

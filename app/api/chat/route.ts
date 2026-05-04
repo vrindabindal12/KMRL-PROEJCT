@@ -256,7 +256,7 @@ Actionable: ${(c.node.actionableItems || []).join('; ')}`
 				const model = genAI.getGenerativeModel({
 					model: 'gemini-2.0-flash-001'
 				});
-				const system = `You are a manager-focused assistant for KMRL.\n- Answer in English.\n- Emphasize decisions, deadlines, compliance, parameters, and cross-department impacts.\n- If information is insufficient, state what is missing.\n- Cite sources as [#N] referencing the context blocks.`;
+				const system = `You are a manager-focused assistant for KMRL.\n- Answer in English.\n- Emphasize decisions, deadlines, compliance, parameters, and cross-department impacts.\n- If information is insufficient, state what is missing.\n- Cite sources as [#N] referencing the context blocks.\n- Do not use emojis in your responses under any circumstances. Keep the output formal, clean, and corporate.`;
 				const prompt = isSummaryRequest
 					? `${system}\n\nYou have been asked to provide a concise executive summary of the relevant documents. Use plain English, be concise (3-6 short paragraphs), and cite sources as [#N] from the context blocks.\n\nContext:\n${contextBlocks}\n\nUser request:\n${query}`
 					: `${system}\n\nContext:\n${contextBlocks}\n\nUser question:\n${query}`;

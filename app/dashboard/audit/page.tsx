@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { cookies } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 import { AUTH_COOKIE, verifySession } from '@/lib/auth';
+import { ArrowLeft, Filter, RotateCcw, ShieldAlert, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type SearchParams = {
   page?: string;
@@ -117,8 +118,13 @@ function renderPage(
     <div className="light-scope min-h-screen bg-gray-50 text-gray-900">
       <div className="max-w-6xl mx-auto p-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Audit Logs</h1>
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-700">Back to Dashboard</Link>
+          <div className="flex items-center gap-2">
+            <ShieldAlert className="h-6 w-6 text-red-600" />
+            <h1 className="text-2xl font-bold text-gray-900">Audit Logs</h1>
+          </div>
+          <Link href="/dashboard" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium">
+            <ArrowLeft className="h-4 w-4" /> Back to Dashboard
+          </Link>
         </div>
 
         {/* Filters */}
@@ -146,8 +152,12 @@ function renderPage(
             </div>
           </div>
           <div className="mt-4 flex gap-3">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" type="submit">Apply</button>
-            <Link href="/dashboard/audit" className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Reset</Link>
+            <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer font-medium text-sm transition-colors" type="submit">
+              <Filter className="h-4 w-4" /> Apply Filters
+            </button>
+            <Link href="/dashboard/audit" className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium text-sm transition-colors">
+              <RotateCcw className="h-4 w-4" /> Reset
+            </Link>
           </div>
         </form>
 
@@ -188,21 +198,29 @@ function renderPage(
         <div className="flex items-center justify-between mt-4">
           <div className="text-sm text-gray-600">Page {page} of {Math.max(1, Math.ceil(total / pageSize))} • {total} total</div>
           <div className="flex gap-2">
-            {prevPage && (
+            {prevPage ? (
               <Link
                 href={`/dashboard/audit?${buildQuery({ ...params, page: String(prevPage) })}`}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="inline-flex items-center gap-1 px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
               >
-                Previous
+                <ChevronLeft className="h-4 w-4" /> Previous
               </Link>
+            ) : (
+              <span className="inline-flex items-center gap-1 px-3 py-1 border border-gray-200 text-gray-400 rounded-lg cursor-not-allowed text-sm">
+                <ChevronLeft className="h-4 w-4" /> Previous
+              </span>
             )}
-            {nextPage && (
+            {nextPage ? (
               <Link
                 href={`/dashboard/audit?${buildQuery({ ...params, page: String(nextPage) })}`}
-                className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="inline-flex items-center gap-1 px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
               >
-                Next
+                Next <ChevronRight className="h-4 w-4" />
               </Link>
+            ) : (
+              <span className="inline-flex items-center gap-1 px-3 py-1 border border-gray-200 text-gray-400 rounded-lg cursor-not-allowed text-sm">
+                Next <ChevronRight className="h-4 w-4" />
+              </span>
             )}
           </div>
         </div>

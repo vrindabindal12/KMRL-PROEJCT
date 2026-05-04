@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { ACTIONS, RESOURCE_CATALOG, type Action } from '@/lib/permissions';
+import { ArrowLeft, UserPlus } from 'lucide-react';
 
 type Role = 'ADMIN' | 'MANAGER';
 
@@ -118,7 +120,12 @@ export default function NewUserPage() {
   return (
     <div className="light-scope min-h-screen bg-gray-50 text-gray-900">
       <div className="max-w-3xl mx-auto p-6 font-sans">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Create User</h1>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-gray-900">Create User</h1>
+          <Link href="/dashboard/users" className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium transition-colors bg-white">
+            <ArrowLeft className="h-4 w-4" /> Back to Users
+          </Link>
+        </div>
 
         {error && <div className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-800">{error}</div>}
         {success && <div className="mb-4 rounded-md bg-green-50 p-3 text-sm text-green-800">{success}</div>}
@@ -166,7 +173,8 @@ export default function NewUserPage() {
           )}
 
           <div className="flex justify-end">
-            <button type="submit" disabled={isSubmitting} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50">
+            <button type="submit" disabled={isSubmitting} className="inline-flex items-center gap-1.5 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:opacity-50 cursor-pointer text-sm font-medium transition-colors">
+              <UserPlus className="h-4 w-4" />
               {isSubmitting ? 'Creating...' : 'Create User'}
             </button>
           </div>

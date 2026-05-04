@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/UI/button';
 import { Input } from '@/components/UI/input';
-import { Trash2, Eye } from 'lucide-react';
+import { Trash2, Eye, ArrowLeft, ChevronLeft, ChevronRight, FileText, Search } from 'lucide-react';
 
 type DocSummary = {
 	id: string;
@@ -79,19 +79,28 @@ export default function DocumentsListPage() {
 		<div className='min-h-screen bg-gray-100'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
 				<div className='flex items-center justify-between mb-4'>
-					<h1 className='text-2xl font-bold text-gray-900'>All Documents</h1>
+					<div className='flex items-center gap-2'>
+						<FileText className='h-6 w-6 text-primary' />
+						<h1 className='text-2xl font-bold text-gray-900'>All Documents</h1>
+					</div>
 					<Link href='/dashboard'>
-						<Button variant='outline'>Back to Dashboard</Button>
+						<Button variant='outline' className='flex items-center gap-2'>
+							<ArrowLeft className='h-4 w-4' /> Back to Dashboard
+						</Button>
 					</Link>
 				</div>
 
 				<div className='bg-white rounded-lg shadow-sm p-4 mb-4'>
 					<div className='flex items-center gap-3'>
-						<Input
-							placeholder='Filter this page…'
-							value={q}
-							onChange={e => setQ(e.target.value)}
-						/>
+						<div className='relative flex-1'>
+							<Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400' />
+							<Input
+								placeholder='Filter this page…'
+								className='pl-9'
+								value={q}
+								onChange={e => setQ(e.target.value)}
+							/>
+						</div>
 						<div className='flex items-center gap-2 text-sm text-gray-600'>
 							<span>Page Size:</span>
 							<Input
@@ -126,16 +135,22 @@ export default function DocumentsListPage() {
 								<tr>
 									<td
 										colSpan={7}
-										className='px-4 py-6 text-center text-gray-500'>
-										Loading…
+										className='px-4 py-8 text-center text-gray-500'>
+										<span className='inline-flex items-center gap-2'>
+											<span className='h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent' />
+											Loading corpus...
+										</span>
 									</td>
 								</tr>
 							) : filtered.length === 0 ? (
 								<tr>
 									<td
 										colSpan={7}
-										className='px-4 py-6 text-center text-gray-500'>
-										No documents
+										className='px-4 py-8 text-center text-gray-400'>
+										<div className='flex flex-col items-center justify-center py-4'>
+											<FileText className='h-8 w-8 mb-2 opacity-50' />
+											<span>No documents found</span>
+										</div>
 									</td>
 								</tr>
 							) : (
@@ -205,18 +220,22 @@ export default function DocumentsListPage() {
 					<div className='flex items-center gap-2'>
 						<Button
 							variant='outline'
+							size='sm'
+							className='flex items-center gap-1'
 							disabled={page <= 0}
 							onClick={() => setPage(Math.max(0, page - 1))}>
-							Prev
+							<ChevronLeft className='h-4 w-4' /> Prev
 						</Button>
-						<div className='text-sm text-gray-700'>
+						<div className='text-sm text-gray-700 font-medium px-2'>
 							Page {page + 1} / {totalPages}
 						</div>
 						<Button
 							variant='outline'
+							size='sm'
+							className='flex items-center gap-1'
 							disabled={page + 1 >= totalPages}
 							onClick={() => setPage(page + 1)}>
-							Next
+							Next <ChevronRight className='h-4 w-4' />
 						</Button>
 					</div>
 				</div>

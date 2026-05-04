@@ -92,8 +92,8 @@ export default function Home() {
               Private deployment package
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">KMRL</span> Document Management & Search Platform
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.12] mb-6 font-sans">
+            KMRL Document Management & Search Platform
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
             Equip operations, safety, and maintenance teams with an internal document repository running securely on local infrastructure for reliable, on-demand reference.

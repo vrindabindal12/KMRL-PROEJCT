@@ -2,7 +2,17 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
+});
 
 export const metadata: Metadata = {
   title: "KMRL App - Multilingual Content Platform",
@@ -17,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="force-light">
       <body
-        className={`antialiased`}
+        className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}
       >
         <div className="min-h-screen flex flex-col">
           <Navbar />

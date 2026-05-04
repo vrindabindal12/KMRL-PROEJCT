@@ -7,66 +7,66 @@ export default function Home() {
   const features = [
     {
       icon: Database,
-      title: "Self-Hosted Control Center",
-      description: "Deploy the dashboard within your network with MongoDB and Prisma tuned for high-volume transport archives.",
+      title: "On-Premises Infrastructure",
+      description: "Deploy the platform securely within your private network using optimized database instances for stable document indexing.",
     },
     {
       icon: Brain,
-      title: "AI Guidance Without Data Leaving",
-      description: "Run summarization, translation, and search locally so sensitive records never leave your perimeter.",
+      title: "Isolated Query Engine",
+      description: "Process summaries, translations, and search queries locally on isolated servers to ensure sensitive data remains within your network.",
     },
     {
       icon: Workflow,
-      title: "Operational Workflows Out Of The Box",
-      description: "Roll out approval trails, read confirmations, and escalation routes modeled on metro operations.",
+      title: "Standardized Operations",
+      description: "Track document acknowledgements, updates, and feedback trails modeled on metro operational safety standards.",
     },
     {
       icon: Globe,
-      title: "Multilingual Delivery",
-      description: "Serve every depot in their language with on-demand translation and localized dashboards.",
+      title: "Localized Distribution",
+      description: "Provide crew and depot operations with on-demand document translation and localized dashboards for clear directives.",
     },
     {
       icon: Users,
-      title: "Role-Based Experience",
-      description: "Provision tailored views for operations, legal, and leadership teams with granular access control.",
+      title: "Access Control",
+      description: "Ensure legal, operations, and engineering teams have tailored dashboards matching their specific clearance levels.",
     },
     {
       icon: Shield,
-      title: "Security and Auditing",
-      description: "Hardened authentication, immutable audit trails, and offline-first fallbacks keep regulators satisfied.",
+      title: "Compliance & Audit Trails",
+      description: "Verify actions with cryptographically sound audit logs, strict session rules, and robust document version control.",
     },
   ];
 
   const capabilities = [
     {
       icon: FileText,
-      title: "Rapid Document Ingestion",
-      description: "Bring legacy PDFs, technical drawings, and SOP updates into a unified knowledge layer.",
+      title: "Document Processing",
+      description: "Ingest and process technical drawings, legacy PDFs, and SOP updates into structured database nodes.",
     },
     {
       icon: Search,
-      title: "Semantic Discovery",
-      description: "Locate the right procedure instantly with hybrid text + vector search tuned for transport language.",
+      title: "Precision Search",
+      description: "Locate specific clauses and regulations using keyword and contextual index parsing.",
     },
     {
       icon: Workflow,
-      title: "Governed Collaboration",
-      description: "Coordinate review cycles and crew acknowledgements with time-bound tasks and reminders.",
+      title: "Operational Review",
+      description: "Manage verification cycles and crew sign-offs with clear logs and automated tracking.",
     },
     {
       icon: Lock,
-      title: "Offline-Ready Compliance",
-      description: "Retain full functionality even when offline and sync audit logs once back on the grid.",
+      title: "High Availability",
+      description: "Access critical documents offline with automated sync controls when network status changes.",
     },
     {
       icon: Bell,
-      title: "Lifecycle Support",
-      description: "We ship continuous improvements while you stay in control of deployment cadence.",
+      title: "Release Engineering",
+      description: "Ensure zero-downtime database updates and stable software releases on your infrastructure.",
     },
     {
       icon: Brain,
-      title: "Insight Dashboards",
-      description: "Monitor adoption, risk hotspots, and knowledge gaps with actionable analytics.",
+      title: "Operational Metrics",
+      description: "Track system utilization, query performance, and user feedback to identify knowledge gaps.",
     },
   ];
 
@@ -93,10 +93,10 @@ export default function Home() {
             </span>
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">KMRL</span> Document Intelligence, Installed On Your Network
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">KMRL</span> Document Management & Search Platform
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-            Equip your teams with a dedicated dashboard that runs on your hardware. We configure deployment, migrate critical archives, and keep shipping upgrades while you stay in control.
+            Equip operations, safety, and maintenance teams with an internal document repository running securely on local infrastructure for reliable, on-demand reference.
           </p>
           <div className="flex gap-6 justify-center">
             <Link
@@ -120,11 +120,11 @@ export default function Home() {
       <section ref={featuresRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-6 tracking-tight">
-            Intelligent Document Management for Modern Organizations
+            Unified Knowledge Management for KMRL Operations
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Leverage cutting-edge AI technologies including OCR, Large Language Models, and semantic search 
-            to revolutionize how you handle documents and ensure compliance.
+            Organize, search, and analyze technical manuals, circulars, and standard operating procedures
+            using local retrieval models and metadata indexing.
           </p>
         </div>
         
@@ -134,25 +134,15 @@ export default function Home() {
             return (
               <div
                 key={index}
-               
-               
-               
-               
-                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                className="bg-white border border-gray-200/80 rounded-2xl p-6 hover:border-blue-500/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col items-start text-left"
               >
-                <div className="flex justify-center mb-6">
-                  <div
-                    className="p-4 bg-blue-50 rounded-full"
-                   
-                   
-                  >
-                    <Icon className="h-10 w-10 text-blue-600" />
-                  </div>
+                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl mb-4">
+                  <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 text-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 text-center leading-relaxed">
+                <p className="text-sm text-gray-600 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -172,10 +162,11 @@ export default function Home() {
         <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl p-12">
           <div className="text-center mb-12">
             <h3 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-              Enterprise-Grade Document Intelligence
+              Enterprise-Grade Document Management
             </h3>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Revolutionize your document management with a platform designed for scalability, precision, and compliance. From intelligent ingestion to actionable insights, our system empowers enterprises to streamline workflows and meet regulatory demands effortlessly.
+              Designed for stability, scalability, and strict security constraints. From document partitioning 
+              to detailed audit logging, the system provides KMRL with standard-compliant tools.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -184,21 +175,13 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                 
-                 
-                  className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                  className="bg-white border border-gray-200/60 rounded-xl p-6 hover:border-blue-400/30 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex flex-col items-start text-left"
                 >
-                  <div className="flex justify-center mb-4">
-                    <div
-                      className="p-3 bg-blue-100 rounded-full"
-                     
-                     
-                    >
-                      <Icon className="h-8 w-8 text-blue-600" />
-                    </div>
+                  <div className="p-2 bg-blue-100/50 text-blue-700 rounded-lg mb-3">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2 text-center">{capability.title}</h4>
-                  <p className="text-gray-600 text-center leading-relaxed">{capability.description}</p>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">{capability.title}</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">{capability.description}</p>
                 </div>
               );
             })}

@@ -1,253 +1,131 @@
-# KMRL Frontend Application
+# 🚇 KMRL Intelligent Document Delivery & AI RAG Platform
 
-A modern, multilingual content delivery platform built with Next.js 13+, featuring AI-powered translation services, real-time content management, and a responsive user interface.
+An enterprise-grade document intelligence and context-aware Retrieval-Augmented Generation (RAG) assistant designed for **Kochi Water Metro Limited (KMRL)**. Built using **Next.js 15 (App Router)**, **TypeScript**, **MongoDB Atlas**, **Prisma ORM**, and **Google Gemini AI**.
 
-## 🚀 Tech Stack
-
-- **Framework**: Next.js 13+ with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **State Management**: React Context API / Zustand (when needed)
-- **Authentication**: Session-based with cookies (NextAuth ready)
-- **Deployment**: Optimized for Vercel
-
-## 📋 Features
-
-- ✅ **Multilingual Support**: Real-time translation powered by AI services
-- ✅ **Responsive Design**: Mobile-first approach with Tailwind CSS
-- ✅ **Authentication System**: Secure login/register with session management
-- ✅ **Dashboard Interface**: Analytics and content management
-- ✅ **AI Integration**: Chat interface for AI-powered assistance
-- ✅ **Error Handling**: Custom error and 404 pages
-- ✅ **Server-Side Rendering**: Optimized for SEO and performance
-- ✅ **Type Safety**: Full TypeScript implementation
-
-## 🛠 Prerequisites
-
-- Node.js 18.17 or later
-- npm, yarn, pnpm, or bun package manager
-- Git for version control
-
-## 📦 Installation
-
-1. Clone the repository:
-```bash
-git clone [repository-url]
-cd kmrl-frontend
-```
-
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. Set up environment variables:
-```bash
-cp .env.example .env.local
-```
-
-4. Update `.env.local` with your configuration:
-- Backend API URL
-- AI Service endpoints
-- Authentication secrets
-- Translation API keys
-
-## 🚀 Development
-
-Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-See also:
-- Ingestion & Agent guide: `INGESTION_AND_AGENT.md`
-- Project status: `PROJECT_STATUS.md`
-- Workflow tracker: `WORKFLOW_TRACKER.md`
-
-## 📁 Project Structure
-
-```
-kmrl-frontend/
-├── app/                      # Next.js App Router
-│   ├── (auth)/              # Authentication routes group
-│   │   ├── login/           # Login page
-│   │   └── register/        # Registration page
-│   ├── dashboard/           # Protected dashboard
-│   ├── api/                 # API routes
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page
-│   ├── error.tsx            # Error boundary
-│   └── not-found.tsx        # 404 page
-├── components/              # Reusable components
-│   ├── Navbar.tsx          # Navigation component
-│   ├── Footer.tsx          # Footer component
-│   └── UI/                 # UI components
-├── styles/                  # Global styles
-│   └── globals.css         # Tailwind imports
-├── public/                  # Static assets
-├── .env.example            # Environment variables template
-├── .env.local              # Local environment variables
-├── next.config.ts          # Next.js configuration
-├── tailwind.config.ts      # Tailwind configuration
-└── tsconfig.json           # TypeScript configuration
-```
-
-## 🔧 Available Scripts
-
-```bash
-# Development
-npm run dev          # Start development server
-
-# Production
-npm run build        # Build for production
-npm run start        # Start production server
-
-# Quality
-npm run lint         # Run ESLint
-npm run type-check   # TypeScript type checking
-```
-
-## 🗃 Database & Utilities
-
-```bash
-# Prisma client
-npm run db:generate
-
-# Push Prisma schema to MongoDB
-npm run db:push
-
-# Seed an admin user
-npm run seed:admin
-```
-
-## 🧪 Testing & API
-
-- See `API_TESTING_GUIDE.md` for endpoint testing tips.
-- Ingestion & Agent guide: `INGESTION_AND_AGENT.md`.
-- Project status and next steps: `PROJECT_STATUS.md`.
-
-## 🌐 Environment Variables
-
-Key environment variables (see `.env.example` for full list):
-
-- `MONGODB_URI`, `MONGODB_DB_NAME`, `MONGODB_COLLECTION`
-- `GEMINI_API_KEY` (from `.env`)
-- `AUTH_SECRET` (JWT for middleware)
-
-## 📱 Pages Overview
-
-### Public Pages
-- `/` - Landing page with features overview
-- `/login` - User authentication
-- `/register` - New user registration
-
-### Protected Pages
-- `/dashboard` - Main application dashboard
-- `/dashboard/[id]` - Document detail with sections, chat, feedback
-- `/profile` - User profile management (coming soon)
-- `/settings` - Application settings (coming soon)
-
-## 🔐 Authentication Flow
-
-1. User registers/logs in via auth pages
-2. Backend validates credentials
-3. Session cookie is set
-4. Middleware protects dashboard routes
-5. Unauthorized users redirected to login
-
-## 🎨 Styling Guidelines
-
-- **Tailwind CSS**: Utility-first approach
-- **Responsive**: Mobile-first design
-- **Dark Mode**: Support planned for future
-- **Consistency**: Follow established component patterns
-
-## 🧪 Testing
-
-```bash
-# Unit tests (to be implemented)
-npm run test
-
-# E2E tests (to be implemented)
-npm run test:e2e
-```
-
-## 📈 Performance Optimization
-
-- Server Components for static content
-- Client Components only when necessary
-- Image optimization with Next/Image
-- Code splitting at route level
-- Lazy loading for heavy components
-
-## 🚢 Deployment
-
-### Vercel (Recommended)
-
-1. Push code to GitHub
-2. Import project in Vercel
-3. Configure environment variables
-4. Deploy
-
-### Self-hosted
-
-```bash
-# Build the application
-npm run build
-
-# Start production server
-npm run start
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
-## 📝 Development Phases
-
-Refer to `FRONTEND.md` for detailed development phases:
-
-- **Phase 1**: ✅ Initial Setup and Configuration
-- **Phase 2**: 🚧 Core Pages and UI Components
-- **Phase 3**: 📅 Integration with Backend and AI Services
-- **Phase 4**: 📅 Optimization and Deployment Prep
-
-## 🐛 Known Issues
-
-- Atlas Vector Search not yet wired; similarity computed in app for now
-- Word document parsing uses placeholder; add mammoth for production
-
-## 📚 Resources
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [TypeScript](https://www.typescriptlang.org/docs)
-- [Lucide Icons](https://lucide.dev)
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 👥 Team
-
-Developed for the KMRL Project.
+This application solves the challenge of organizing, searching, translating, and querying vast amounts of internal documents, safety procedures, and policy handbooks with high security and speed.
 
 ---
 
-**Note**: This is a development version. Some features are still under construction.
+## 🏗️ System Architecture
+
+The platform uses a robust **5-Layer Pipeline** to process files from raw formats into secure, interactive knowledge graphs:
+
+```
+┌────────────────────────────────────────────────────────┐
+│             Layer 1: Multi-Format Ingestion            │
+│  (PDF Page Extraction / HTML Parser / Text Cleansing)  │
+└───────────────────────────┬────────────────────────────┘
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│            Layer 2: AI Semantic Analysis Engine        │
+│    (Gemini 2.5 Flash / JSON Schema Validation / OOCR)  │
+└───────────────────────────┬────────────────────────────┘
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│           Layer 3: Semantic Chunking & Storage         │
+│   (Linked Node Graphs / MongoDB Atlas / Indexing)     │
+└───────────────────────────┬────────────────────────────┘
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│          Layer 4: Access Control & Permissions         │
+│ (Granular Permission Matrices / Role-Based Redirection)│
+└───────────────────────────┬────────────────────────────┘
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│            Layer 5: Multi-Turn RAG Chat System         │
+│  (Context Retrieval / Source Referencing / Translation) │
+└────────────────────────────────────────────────────────┘
+```
+
+### 1. Ingestion & Dynamic Parsing Layer
+* Parses raw text, HTML content, and complex PDFs.
+* Utilizes `pdfjs-dist` to parse page-by-page. Implements a lazy-loading worker model and a dynamic fallback to **Cloudinary-based PDF extraction** when native canvas modules are restricted.
+
+### 2. AI Semantic Analysis Layer
+* Processes text and page images through **Google Gemini 2.5 Flash**.
+* Extracts structured **JSON metadata** including: Page Ranges, Summaries, Key Points, Actionable Items (with assignees, deadlines, and impacts), Critical Flags, and cross-department interests.
+
+### 3. Data Persistence & Indexing Layer
+* Maps parsed documents into a relational linked list structure (`prevNodeId` / `nextNodeId`).
+* Persists data in **MongoDB Atlas** via **Prisma ORM** with optimized text and compound indexes for high-speed keyword and category search.
+
+### 4. Access Control & Security Layer
+* Enforces role-based access (`ADMIN` vs `MANAGER`).
+* Features a granular **matrix permission system** where managers are restricted to specific departments (e.g., *Safety*, *Operations*) or document types (e.g., *Policies*, *Logs*).
+* Features an **Audit Log** system to log all user creation and configuration events.
+
+### 5. Interactive RAG Chat Layer
+* Provides a multi-turn chat experience allowing users to query document contents.
+* Integrates **AI-Powered Real-Time Translation** (supporting local languages) dynamically translating UI strings and policy contents.
+
+---
+
+## ⚡ Key Features
+
+* 🔐 **Secure Authentication**: JWT-based session management, cookies, and route redirection using Next.js Middleware.
+* 🤖 **AI-Driven Summarization**: Automated, structured summaries, key takeaways, and action items extracted from long documents.
+* 💬 **Context-Aware RAG Chat**: Chat with documents to get immediate answers, complete with references back to exact pages.
+* 🌎 **Multilingual UI**: On-the-fly translations of both static interface elements and database contents.
+* 📊 **Audit Logs & User Management**: Admins can monitor system actions, create new users, and configure granular document permission matrices.
+* 📱 **Modern responsive UI**: Fluid dashboards built with **Tailwind CSS**, dynamic animations using **Framer Motion**, and crisp visual symbols via **Lucide Icons**.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend Framework**: Next.js 15.5 (App Router, Server Actions)
+* **Language**: TypeScript (Type-Safe APIs & Components)
+* **Database & ORM**: MongoDB Atlas & Prisma
+* **Styling & UI**: Tailwind CSS, Framer Motion, Lucide React
+* **AI Models**: Gemini 2.5 (via `@google/generative-ai` & `@google/genai`)
+* **File Upload & Processing**: Cloudinary, PDF.js
+
+---
+
+## 🚀 Installation & Local Setup
+
+### 1. Clone & Install Dependencies
+```bash
+git clone https://github.com/vrindabindal12/KMRL-PROEJCT.git
+cd kmrl-frontend
+npm install
+```
+
+### 2. Environment Configuration
+Create a `.env` file in the root directory:
+```env
+MONGO_URI="mongodb+srv://<username>:<password>@<cluster>.mongodb.net/kmrl?retryWrites=true&w=majority"
+JWT_SECRET="your_jwt_secret_key"
+GEMINI_API_KEY="your_google_gemini_api_key"
+LECTO_AI_API_KEY="your_translation_api_key"
+```
+
+### 3. Initialize the Database
+Generate the Prisma Client and push your schemas to your MongoDB instance:
+```bash
+# Push schemas and build indexes
+npm run db:push
+```
+
+### 4. Create an Admin User
+Seed an admin account to log into the dashboard:
+```bash
+npm run seed:admin -- --name "Admin User" --email admin@example.com --password secret123
+```
+
+### 5. Start Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) and sign in using:
+* **Email:** `admin@example.com`
+* **Password:** `secret123`
+
+---
+
+## 🧪 Development Scripts
+
+* `npm run dev` - Starts the development server using Webpack.
+* `npm run build` - Compiles the application for production.
+* `npm run lint` - Code linting and style validation.
+* `npx prisma studio` - Graphical viewer to inspect your MongoDB database collections.

@@ -64,6 +64,22 @@ The platform uses a robust 5-Layer Pipeline to process files from raw formats in
 
 The end-to-end operation of the platform is governed by the following workflow:
 
+```mermaid
+graph TD
+    A[User / Admin] -->|1. Request Login| B(Authentication Portal)
+    B -->|Generates JWT Session Cookie| A
+    C[Admin] -->|2. Upload Document| D(Ingestion Pipeline)
+    D -->|3. Extract Text & Images| E(PDF / HTML Parser)
+    E -->|4. Send Text & Graphics| F(Gemini AI Engine)
+    F -->|5. Structure Output JSON| G(Linked Graph Constructor)
+    G -->|6. Save Document & Nodes| H[(MongoDB Atlas)]
+    A -->|7. Access Dashboard| I(Permission Gate)
+    I -->|Query Gated Data| H
+    A -->|8. Submit Chat Query| J(RAG Chat Engine)
+    J -->|9. Retrieve Context Nodes| H
+    J -->|10. Stream Grounded Answer + Citations| A
+```
+
 1. **User Authentication & Session Handshake**:
    Users authenticate through the secure login portal. The server validates credentials against MongoDB, signs a secure JWT, and stores it in an HTTP-only cookie. The session encapsulates the user's role (ADMIN/MANAGER) and their granular department permission grants.
 

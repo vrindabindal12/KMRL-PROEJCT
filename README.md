@@ -147,19 +147,11 @@ Generate the Prisma Client and push your schemas to your MongoDB instance:
 npm run db:push
 ```
 
-### 4. Create an Admin User
-Seed an admin account to log into the dashboard:
-```bash
-npm run seed:admin -- --name "Admin User" --email admin@example.com --password secret123
-```
-
-### 5. Start Development Server
+### 4. Start Development Server
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) and sign in using:
-* **Email:** `admin@example.com`
-* **Password:** `secret123`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 

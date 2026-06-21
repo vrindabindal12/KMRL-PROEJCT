@@ -1,14 +1,14 @@
-# 🚇 KMRL Intelligent Document Delivery & AI RAG Platform
+# KMRL Intelligent Document Delivery & AI RAG Platform
 
-An enterprise-grade document intelligence and context-aware Retrieval-Augmented Generation (RAG) assistant designed for **Kochi Water Metro Limited (KMRL)**. Built using **Next.js 15 (App Router)**, **TypeScript**, **MongoDB Atlas**, **Prisma ORM**, and **Google Gemini AI**.
+An enterprise-grade document intelligence and context-aware Retrieval-Augmented Generation (RAG) assistant designed for Kochi Water Metro Limited (KMRL). Built using Next.js 15 (App Router), TypeScript, MongoDB Atlas, Prisma ORM, and Google Gemini AI.
 
 This application solves the challenge of organizing, searching, translating, and querying vast amounts of internal documents, safety procedures, and policy handbooks with high security and speed.
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
-The platform uses a robust **5-Layer Pipeline** to process files from raw formats into secure, interactive knowledge graphs:
+The platform uses a robust 5-Layer Pipeline to process files from raw formats into secure, interactive knowledge graphs:
 
 ```
 ┌────────────────────────────────────────────────────────┐
@@ -39,39 +39,63 @@ The platform uses a robust **5-Layer Pipeline** to process files from raw format
 
 ### 1. Ingestion & Dynamic Parsing Layer
 * Parses raw text, HTML content, and complex PDFs.
-* Utilizes `pdfjs-dist` to parse page-by-page. Implements a lazy-loading worker model and a dynamic fallback to **Cloudinary-based PDF extraction** when native canvas modules are restricted.
+* Utilizes `pdfjs-dist` to parse page-by-page. Implements a lazy-loading worker model and a dynamic fallback to Cloudinary-based PDF extraction when native canvas modules are restricted.
 
 ### 2. AI Semantic Analysis Layer
-* Processes text and page images through **Google Gemini 2.5 Flash**.
-* Extracts structured **JSON metadata** including: Page Ranges, Summaries, Key Points, Actionable Items (with assignees, deadlines, and impacts), Critical Flags, and cross-department interests.
+* Processes text and page images through Google Gemini 2.5 Flash.
+* Extracts structured JSON metadata including: Page Ranges, Summaries, Key Points, Actionable Items (with assignees, deadlines, and impacts), Critical Flags, and cross-department interests.
 
 ### 3. Data Persistence & Indexing Layer
 * Maps parsed documents into a relational linked list structure (`prevNodeId` / `nextNodeId`).
-* Persists data in **MongoDB Atlas** via **Prisma ORM** with optimized text and compound indexes for high-speed keyword and category search.
+* Persists data in MongoDB Atlas via Prisma ORM with optimized text and compound indexes for high-speed keyword and category search.
 
 ### 4. Access Control & Security Layer
-* Enforces role-based access (`ADMIN` vs `MANAGER`).
-* Features a granular **matrix permission system** where managers are restricted to specific departments (e.g., *Safety*, *Operations*) or document types (e.g., *Policies*, *Logs*).
-* Features an **Audit Log** system to log all user creation and configuration events.
+* Enforces role-based access (ADMIN vs MANAGER).
+* Features a granular matrix permission system where managers are restricted to specific departments (e.g., Safety, Operations) or document types (e.g., Policies, Logs).
+* Features an Audit Log system to log all user creation and configuration events.
 
 ### 5. Interactive RAG Chat Layer
 * Provides a multi-turn chat experience allowing users to query document contents.
-* Integrates **AI-Powered Real-Time Translation** (supporting local languages) dynamically translating UI strings and policy contents.
+* Integrates AI-Powered Real-Time Translation (supporting local languages) dynamically translating UI strings and policy contents.
 
 ---
 
-## ⚡ Key Features
+## System Workflow
 
-* 🔐 **Secure Authentication**: JWT-based session management, cookies, and route redirection using Next.js Middleware.
-* 🤖 **AI-Driven Summarization**: Automated, structured summaries, key takeaways, and action items extracted from long documents.
-* 💬 **Context-Aware RAG Chat**: Chat with documents to get immediate answers, complete with references back to exact pages.
-* 🌎 **Multilingual UI**: On-the-fly translations of both static interface elements and database contents.
-* 📊 **Audit Logs & User Management**: Admins can monitor system actions, create new users, and configure granular document permission matrices.
-* 📱 **Modern responsive UI**: Fluid dashboards built with **Tailwind CSS**, dynamic animations using **Framer Motion**, and crisp visual symbols via **Lucide Icons**.
+The end-to-end operation of the platform is governed by the following workflow:
+
+1. **User Authentication & Session Handshake**:
+   Users authenticate through the secure login portal. The server validates credentials against MongoDB, signs a secure JWT, and stores it in an HTTP-only cookie. The session encapsulates the user's role (ADMIN/MANAGER) and their granular department permission grants.
+
+2. **Document Upload & Pre-processing**:
+   Administrators upload policy handbooks, schedules, or technical guidelines. The ingestion pipeline dynamically selects the appropriate parser based on the MIME type (PDF, HTML, TXT), extracting raw text along with page boundary markers.
+
+3. **Multi-Modal AI Analysis**:
+   The extracted text and page graphics are routed to the Gemini AI API. The engine runs semantic analysis against strict JSON schemas to identify key action items, assignees, deadlines, safety risks, and cross-department tags.
+
+4. **Graph-Based Persistence**:
+   The document is divided into sequential semantic nodes. These nodes are structured into a linked graph (using `prevNodeId` and `nextNodeId`) and written to the database along with automatically computed keyword search indexes.
+
+5. **Permission Gated Discovery**:
+   When a user accesses the dashboard, the system reads their permission matrix and queries MongoDB to retrieve only the documents and departments they are explicitly authorized to view.
+
+6. **Contextual Retrieval & RAG Chat**:
+   When querying a document, the system retrieves relevant semantic nodes from the database, feeds them as grounding context to the Gemini LLM alongside the user's query history, and streams back a response complete with inline page-level citations.
 
 ---
 
-## 🛠️ Tech Stack
+## Key Features
+
+* **Secure Authentication**: JWT-based session management, cookies, and route redirection using Next.js Middleware.
+* **AI-Driven Summarization**: Automated, structured summaries, key takeaways, and action items extracted from long documents.
+* **Context-Aware RAG Chat**: Chat with documents to get immediate answers, complete with references back to exact pages.
+* **Multilingual UI**: On-the-fly translations of both static interface elements and database contents.
+* **Audit Logs & User Management**: Admins can monitor system actions, create new users, and configure granular document permission matrices.
+* **Responsive Enterprise UI**: Fluid layouts built with Tailwind CSS, dynamic transitions using Framer Motion, and visual indicators via Lucide.
+
+---
+
+## Tech Stack
 
 * **Frontend Framework**: Next.js 15.5 (App Router, Server Actions)
 * **Language**: TypeScript (Type-Safe APIs & Components)
@@ -82,7 +106,7 @@ The platform uses a robust **5-Layer Pipeline** to process files from raw format
 
 ---
 
-## 🚀 Installation & Local Setup
+## Installation & Local Setup
 
 ### 1. Clone & Install Dependencies
 ```bash
@@ -123,9 +147,9 @@ Open [http://localhost:3000](http://localhost:3000) and sign in using:
 
 ---
 
-## 🧪 Development Scripts
+## Development Scripts
 
 * `npm run dev` - Starts the development server using Webpack.
 * `npm run build` - Compiles the application for production.
 * `npm run lint` - Code linting and style validation.
-* `npx prisma studio` - Graphical viewer to inspect your MongoDB database collections.
+* `npx prisma studio` - Graphical database viewer to inspect database collections.

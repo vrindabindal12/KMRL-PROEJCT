@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import LayoutVisibility from "@/components/LayoutVisibility";
+import { Inter, Plus_Jakarta_Sans, Source_Serif_4, Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+});
+
+const sourceSerif4 = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-source-serif",
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -15,8 +25,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "KMRL App - Multilingual Content Platform",
-  description: "A modern multilingual content delivery platform with AI-powered translation services",
+  title: "Alwayzz - Premium Creative On Demand",
+  description: "A flexible design partnership for founders, brands, and agencies.",
 };
 
 export default function RootLayout({
@@ -25,16 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="force-light">
+    <html lang="en" className={cn("force-light", "font-sans", geist.variable)}>
       <body
-        className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}
+        className={`${inter.variable} ${sourceSerif4.variable} ${plusJakartaSans.variable} font-sans antialiased`}
       >
         <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
+          <LayoutVisibility>{children}</LayoutVisibility>
         </div>
       </body>
     </html>

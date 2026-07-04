@@ -1,9 +1,41 @@
 "use client";
-import { ArrowRight, FileText, Search, Brain, Shield, Users, Bell, Database, Globe, Workflow, Lock } from "lucide-react";
+
+import React from "react";
 import Link from "next/link";
-import { useRef } from "react";
+import { Database, Brain, Workflow, Globe, Users, Shield, FileText, Search, Lock, Bell } from "lucide-react";
+import { Globe as MagicGlobe } from "@/components/UI/globe";
+import "@/styles/alwayzz.css";
 
 export default function Home() {
+
+  // Generate curved lines arrays
+  // Left: 20 lines, widths 60, 70, 80...
+  // Right: 20 lines, widths 60, 70, 80...
+  // Top (mobile): 20 lines, heights 60, 70, 80...
+  const lines = Array.from({ length: 20 });
+
+  const tickerItems = [
+    "On-Premises Infrastructure",
+    "Isolated Query Engine",
+    "Standardized Operations",
+    "Localized Distribution",
+    "Access Control",
+    "Compliance & Audit Trails"
+  ];
+  // 4x duplicated rows for seamless loop
+  const duplicatedTickers = [...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems];
+
+  const trustedCompanies = [
+    { name: "Operations", font: "system-ui, sans-serif", weight: 800 },
+    { name: "Safety", font: "Georgia, serif", weight: 500 },
+    { name: "Maintenance", font: "var(--font-inter), sans-serif", weight: 600 },
+    { name: "Engineering", font: "var(--font-inter), sans-serif", weight: 700 },
+    { name: "Legal", font: "system-ui, sans-serif", weight: 600 },
+    { name: "Depot", font: "Georgia, serif", weight: 700 },
+    { name: "Crew", font: "var(--font-source-serif), serif", weight: 600 },
+  ];
+  const duplicatedTrusted = [...trustedCompanies, ...trustedCompanies, ...trustedCompanies];
+
   const features = [
     {
       icon: Database,
@@ -41,147 +73,184 @@ export default function Home() {
     {
       icon: FileText,
       title: "Document Processing",
-      description: "Ingest and process technical drawings, legacy PDFs, and SOP updates into structured database nodes.",
+      description: "Ingest and process technical drawings, legacy PDFs, and HTML policy updates into structured database nodes. The platform utilizes an advanced 5-layer pipeline combining a dynamic lazy-loading extraction engine with Cloudinary-based fallbacks. Extracted content is passed through Google Gemini 2.5 AI for deep semantic analysis to automatically isolate actionable items, detect safety risks, and generate cross-department tags. Finally, documents are mapped into a relational linked graph and securely persisted in MongoDB Atlas, ensuring high-speed keyword queries and pristine version control for all operations teams. This end-to-end architecture in which raw textual data is instantly converted into interactive knowledge bases.",
+      className: "alwayzz-bento-large"
     },
     {
       icon: Search,
       title: "Precision Search",
       description: "Locate specific clauses and regulations using keyword and contextual index parsing.",
+      className: "alwayzz-bento-wide"
     },
     {
       icon: Workflow,
       title: "Operational Review",
       description: "Manage verification cycles and crew sign-offs with clear logs and automated tracking.",
+      className: "alwayzz-bento-square"
     },
     {
       icon: Lock,
       title: "High Availability",
       description: "Access critical documents offline with automated sync controls when network status changes.",
+      className: "alwayzz-bento-square"
     },
     {
       icon: Bell,
       title: "Release Engineering",
       description: "Ensure zero-downtime database updates and stable software releases on your infrastructure.",
+      className: "alwayzz-bento-wide"
     },
     {
       icon: Brain,
       title: "Operational Metrics",
       description: "Track system utilization, query performance, and user feedback to identify knowledge gaps.",
+      className: "alwayzz-bento-wide"
     },
   ];
 
-  // Refs for each section to detect when they enter the viewport
-  const heroRef = useRef(null);
-  const featuresRef = useRef(null);
-  const capabilitiesRef = useRef(null);
-  const ctaRef = useRef(null);
-
-  // useInView hooks to detect when sections are in view
-  // No framer-motion in restricted build; using static content
-
-  // Removed animation variables - no framer-motion in restricted build
-
   return (
-    <div className="bg-gradient-to-b from-gray-50 via-blue-50 to-white min-h-screen">
+    <div className="alwayzz-page">
+      <nav className="alwayzz-nav">
+        <Link href="/" className="alwayzz-logo serif italic">
+          KMRL
+        </Link>
+        <Link href="/login" className="alwayzz-menu-btn" style={{ textDecoration: 'none' }}>
+          Client Login
+        </Link>
+      </nav>
+
       {/* Hero Section */}
-      <section ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-center">
-          <div className="mb-8">
-            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-800 shadow-md transform transition-transform hover:scale-105">
-              <Database className="w-5 h-5 mr-2" />
-              Private deployment package
-            </span>
+      <section className="alwayzz-hero">
+        <div className="alwayzz-line-container">
+          {lines.map((_, i) => (
+            <div
+              key={`left-${i}`}
+              className="alwayzz-line alwayzz-line-left"
+              style={{
+                width: `${60 + i * 10}px`,
+                animationDelay: `${i * 0.25}s`,
+              }}
+            />
+          ))}
+          {lines.map((_, i) => (
+            <div
+              key={`right-${i}`}
+              className="alwayzz-line alwayzz-line-right"
+              style={{
+                width: `${60 + i * 10}px`,
+                animationDelay: `${i * 0.25}s`,
+              }}
+            />
+          ))}
+          {lines.map((_, i) => (
+            <div
+              key={`top-${i}`}
+              className="alwayzz-line alwayzz-line-top"
+              style={{
+                height: `${60 + i * 10}px`,
+                animationDelay: `${i * 0.25}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="alwayzz-ticker-wrapper">
+          <div className="alwayzz-ticker-track">
+            {duplicatedTickers.map((item, i) => (
+              <span key={i} className="alwayzz-ticker-item">
+                {item}
+              </span>
+            ))}
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.12] mb-6 font-sans">
-            KMRL Document Management & Search Platform
-          </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-            Equip operations, safety, and maintenance teams with an internal document repository running securely on local infrastructure for reliable, on-demand reference.
-          </p>
-          <div className="flex gap-6 justify-center">
-            <Link
-              href="/request-deployment"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-full text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              Request Deployment
-              <ArrowRight className="ml-3 h-6 w-6 animate-pulse" />
-            </Link>
-            <Link
-              href="/login"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold rounded-full text-gray-800 bg-white border-2 border-gray-200 hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-md"
-            >
-              Client Login
-            </Link>
+        </div>
+
+        <h1 className="alwayzz-title">
+          KMRL Document <span className="serif italic">Management</span> & Search Platform.
+        </h1>
+
+        <p className="alwayzz-subtitle">
+          Equip operations, safety, and maintenance teams with an internal document repository running securely on local infrastructure for reliable, on-demand reference.
+        </p>
+
+        <div className="alwayzz-cta-row">
+          <Link href="/request-deployment" className="alwayzz-btn-primary">
+            Request Deployment
+          </Link>
+        </div>
+
+        <div className="alwayzz-blur"></div>
+      </section>
+
+      {/* Trusted By Section */}
+      <section className="alwayzz-trusted">
+        <div className="alwayzz-trusted-label">
+          Trusted by internal KMRL divisions globally
+        </div>
+        <div className="alwayzz-trusted-marquee">
+          <div className="alwayzz-trusted-track">
+            {duplicatedTrusted.map((company, i) => (
+              <span
+                key={i}
+                className="alwayzz-trusted-item"
+                style={{
+                  fontFamily: company.font,
+                  fontWeight: company.weight,
+                }}
+              >
+                {company.name}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section ref={featuresRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-6 tracking-tight">
-            Unified Knowledge Management for KMRL Operations
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Organize, search, and analyze technical manuals, circulars, and standard operating procedures
-            using local retrieval models and metadata indexing.
+      <section className="alwayzz-features">
+        <div className="alwayzz-features-header">
+          <h2 className="alwayzz-features-title">Unified Knowledge Management for KMRL Operations</h2>
+          <p className="alwayzz-features-subtitle">
+            Organize, search, and analyze technical manuals, circulars, and standard operating procedures using local retrieval models and metadata indexing.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
+
+        <div className="alwayzz-features-grid">
+          {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
-              <div
-                key={index}
-                className="bg-white border border-gray-200/80 rounded-2xl p-6 hover:border-blue-500/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col items-start text-left"
-              >
-                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl mb-4">
-                  <Icon className="h-6 w-6" />
+              <div key={idx} className="alwayzz-feature-card">
+                <div className="alwayzz-feature-icon">
+                  <Icon size={20} strokeWidth={2.5} />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
+                <h3 className="alwayzz-feature-title">{feature.title}</h3>
+                <p className="alwayzz-feature-desc">{feature.description}</p>
               </div>
             );
           })}
         </div>
       </section>
 
-      {/* Capabilities Section */}
-      <section
-        ref={capabilitiesRef}
-       
-       
-       
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-      >
-        <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl p-12">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-              Enterprise-Grade Document Management
-            </h3>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Designed for stability, scalability, and strict security constraints. From document partitioning 
-              to detailed audit logging, the system provides KMRL with standard-compliant tools.
+      {/* Capabilities Bento Grid */}
+      <section className="alwayzz-capabilities">
+        <div className="alwayzz-capabilities-inner">
+          <div className="alwayzz-capabilities-header">
+            <h2 className="alwayzz-capabilities-title">Enterprise-Grade Document Management</h2>
+            <p className="alwayzz-capabilities-subtitle">
+              Designed for stability, scalability, and strict security constraints. From document partitioning to detailed audit logging, the system provides KMRL with standard-compliant tools.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {capabilities.map((capability, index) => {
-              const Icon = capability.icon;
+
+          <div className="alwayzz-bento-grid">
+            {capabilities.map((cap, idx) => {
+              const Icon = cap.icon;
               return (
-                <div
-                  key={index}
-                  className="bg-white border border-gray-200/60 rounded-xl p-6 hover:border-blue-400/30 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex flex-col items-start text-left"
-                >
-                  <div className="p-2 bg-blue-100/50 text-blue-700 rounded-lg mb-3">
-                    <Icon className="h-5 w-5" />
+                <div key={idx} className={`alwayzz-capability-card ${cap.className}`}>
+                  <div className="alwayzz-capability-icon">
+                    <Icon size={20} strokeWidth={2.5} />
                   </div>
-                  <h4 className="text-base font-bold text-gray-900 mb-2">{capability.title}</h4>
-                  <p className="text-sm text-gray-600 leading-relaxed">{capability.description}</p>
+                  <div className="alwayzz-capability-text">
+                    <h3 className="alwayzz-capability-title">{cap.title}</h3>
+                    <p className="alwayzz-capability-desc">{cap.description}</p>
+                  </div>
                 </div>
               );
             })}
@@ -189,32 +258,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section
-        ref={ctaRef}
-       
-       
-       
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
-      >
-        <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-3xl px-10 py-16 text-center shadow-2xl">
-          <h2 className="text-4xl font-extrabold text-white mb-6 tracking-tight">
-            Schedule a Deployment Planning Session
-          </h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Share your constraints and we will assemble an installation roadmap, training plan, and support model tailored to your organization.
+      {/* Globe Section */}
+      <section className="alwayzz-globe-section">
+        <div className="alwayzz-globe-content">
+          <h2 className="alwayzz-globe-title">Ready for Global Deployment</h2>
+          <p className="alwayzz-globe-text">
+            Secure, scalable, and highly available infrastructure that runs seamlessly on your internal networks.
           </p>
-          <div>
-            <Link
-              href="/request-deployment"
-              className="inline-flex items-center px-10 py-4 text-lg font-semibold rounded-full text-blue-800 bg-white hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              Request Deployment Plan
-              <ArrowRight className="ml-3 h-6 w-6 animate-pulse" />
-            </Link>
+        </div>
+        <div className="alwayzz-globe-container">
+          <div className="alwayzz-globe-wrapper">
+            <MagicGlobe />
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="alwayzz-footer">
+        <div className="alwayzz-footer-left">
+          <Link href="/" className="alwayzz-footer-logo serif italic">
+            KMRL
+          </Link>
+          <span>&copy; {new Date().getFullYear()} KMRL. All rights reserved.</span>
+        </div>
+        <div className="alwayzz-footer-links">
+          <Link href="/privacy" className="alwayzz-footer-link">Privacy Policy</Link>
+          <Link href="/terms" className="alwayzz-footer-link">Terms of Service</Link>
+          <Link href="/request-deployment" className="alwayzz-footer-link">Contact</Link>
+        </div>
+      </footer>
     </div>
   );
 }

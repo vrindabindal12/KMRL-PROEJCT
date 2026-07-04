@@ -735,7 +735,9 @@
     padding: 80px 24px 40px;
   }
   .kmrl-hero::before {
-    transform: rotate(90deg);
+    transform: none;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
   }
   .kmrl-line-left,
   .kmrl-line-right {

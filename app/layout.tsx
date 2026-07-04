@@ -25,7 +25,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Alwayzz - Premium Creative On Demand",
+  title: "KMRL - Premium Creative On Demand",
   description: "A flexible design partnership for founders, brands, and agencies.",
 };
 

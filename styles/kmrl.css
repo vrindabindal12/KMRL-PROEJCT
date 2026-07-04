@@ -17,6 +17,10 @@
   overflow-x: hidden;
 }
 
+.kmrl-page, .kmrl-page *, .kmrl-page *::before, .kmrl-page *::after {
+  box-sizing: border-box;
+}
+
 .kmrl-page .serif {
   font-family: var(--font-source-serif), serif;
 }
